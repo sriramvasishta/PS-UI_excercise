@@ -5,7 +5,7 @@ Please do find the Bar graph excercise of UI and Palindrome search of problem so
 
 
 # About Palindrome.html
-   1) Developed the application using vanilla javascript.
+   1) Developed the application using vanilla javascript and HTML.
    2) Run the palindrome.html file and you can see the output in console window.
 
 # About BarGraph.html
