@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<style type="text/css"></style>
+
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript" >
+	function Palindrome(string1) {
+var string2 = string1.split("").reverse().join("");
+return string1 == string2;
+}
+
+function Secondlongest_palindrome(string1){
+
+var max_length = 0,
+p_array = [];
+  var temp;
+  var final;
+
+for(var i=0; i < string1.length; i++) 
+{
+var subs = string1.substr(i, string1.length);
+
+for(var j=subs.length; j>=0; j--) 
+{
+var sub_subs_str = subs.substr(0, j);
+if (sub_subs_str.length <= 1)
+continue;
+
+if (Palindrome(sub_subs_str))
+{
+p_array.push(sub_subs_str);
+ p_array.sort();
+}
+}
+}
+p_array.sort(function(a, b) {
+  return b.length - a.length || 
+         b.localeCompare(a);    
+});
+   
+  
+  for(var i =0 ; i < p_array.length; i++){
+      temp = p_array[i+1];
+      final = temp;
+      if( temp.length == p_array[0]){
+        i++
+      }else{
+        break;
+      }
+  }
+return final;
+}
+
+console.log(Secondlongest_palindrome("refereerr"));
+console.log(Secondlongest_palindrome("topspots"));
+</script>
+
+<div id="chart"></div>
+</body>
+</html>
