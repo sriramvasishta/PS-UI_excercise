@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+	html,
+body {
+  font-family: Consolas, monaco, monospace;
+}
+
+#chart {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  height: 400px;
+}
+
+.charttitle {
+  text-align: center;
+}
+
+.bars td {
+  vertical-align: bottom;
+}
+
+.bars div:hover {
+  opacity: 0.6;
+}
+
+.legend {
+  vertical-align: bottom;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.legbox {
+  display: block;
+  clear: both;
+}
+
+/*Bar graph column colors*/
+
+.one {
+  background: #9400D3;
+}
+
+.two {
+  background: #4B0082;
+}
+
+.three {
+  background: #0000FF;
+}
+
+.four {
+  background: #00FF00;
+}
+
+.five {
+  background: #8B0000;
+}
+
+.six {
+  background: #FF7F00;
+}
+
+.seven {
+  background: #FF0000;
+}
+
+.eight {
+  background: #32CD32;
+}
+
+.nine {
+  background: #0F3D0F;
+}
+
+.ten {
+  background: #B22222;
+}
+
+
+</style>
+
+	<title> BAR GRAPH TASK</title>
+</head>
+<body>
+<div id="chart"></div>
+<script type="text/javascript">
+	//bargraph data
+var datajson = {
+  "title": " Bar Graph Task ",
+  "data": [
+    49, 8, 23, 57, 94, 78, 94, 54, 75, 63
+  ],
+  "prefix": "%"
+}
+
+// bar graph column colors
+var colors = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
+
+//constants
+var Trow = 'tr';
+ var Tdata = 'td';
+
+var chart = document.createElement('div');
+//create the bargraph canvas
+var barchart = document.createElement('table');
+//create the title row
+var titlerow = document.createElement(Trow);
+//create the title data
+var titledata = document.createElement(Tdata);
+//make the colspan to number of records
+titledata.setAttribute('colspan', datajson.data.length + 1);
+titledata.setAttribute('class', 'charttitle');
+titledata.innerText = datajson.title;
+titlerow.appendChild(titledata);
+barchart.appendChild(titlerow);
+chart.appendChild(barchart);
+
+//create the bar row
+var barrow = document.createElement(Trow);
+
+//lets add data to the bargraph
+for (var i = 0; i < datajson.data.length; i++) {
+  barrow.setAttribute('class', 'bars');
+  var prefix = datajson.prefix || '';
+  //create the bar data
+  var bardata = document.createElement(Tdata);
+  var bar = document.createElement('div');
+  bar.setAttribute('class', colors[i]);
+  bar.style.height = datajson.data[i]+ prefix;
+  bardata.innerText = datajson.data[i];
+  bardata.appendChild(bar);
+  barrow.appendChild(bardata);
+}
+
+//create legends
+var legendrow = document.createElement(Trow);
+var legend = document.createElement(Tdata);
+legend.setAttribute('class', 'legend');
+legend.setAttribute('colspan', datajson.data.length);
+
+//add legend data
+for (var i = 0; i < datajson.data.length; i++) {
+  var legbox = document.createElement('span');
+  legbox.setAttribute('class', 'legbox');
+  var barname = document.createElement('span');
+  
+  var bartext = document.createElement('span');
+  
+  legbox.appendChild(barname);
+  legbox.appendChild(bartext);
+
+}
+barrow.appendChild(legend);
+barchart.appendChild(barrow);
+barchart.appendChild(legendrow);
+chart.appendChild(barchart);
+document.getElementById('chart').innerHTML = chart.outerHTML;
+</script>
+</body>
+</html>
